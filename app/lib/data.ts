@@ -126,7 +126,8 @@ export async function fetchInvoicesPages(query: string) {
       customers.email ILIKE ${`%${query}%`} OR
       invoices.amount::text ILIKE ${`%${query}%`} OR
       invoices.date::text ILIKE ${`%${query}%`} OR
-      invoices.status ILIKE ${`%${query}%`}
+      invoices.status ILIKE ${`%${query}%
+    Order By invoices.date DESC`}
   `;
 
     const totalPages = Math.ceil(Number(data[0].count) / ITEMS_PER_PAGE);
